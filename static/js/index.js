@@ -215,13 +215,15 @@ function age() {
 
 function imgup(){
     var proimg = document.getElementById("profile").value;
-    var allowedExtensions =/(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    var filePath = proimg.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
     if(proimg == "")
     {
         document.getElementById("imagepro").innerHTML = "No Choosen file !"
         return false;
     }
- 
+    
+
     else{
         document.getElementById("imagepro").innerHTML = "";
         return true;
