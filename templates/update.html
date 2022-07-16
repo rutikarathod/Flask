@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+
+{% block body %} 
+<div class="reg-img">
+  <nav class="navbar navbar-light bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <h2 class="text-uppercase">
+            <h2 class="word"><i class="fa fa-user-circle m-2 text-warning"></i> Welcome,{{account[16]  or '' }} </h2>
+      </a>
+     
+      <div class="d-flex">
+        <a href="{{url_for('user_panel')}}" class="font-icon"><span class="fa fa-home"
+            aria-hidden="true"></span></a>
+
+    <a href="{{url_for('logout')}}" class="font-icon"><span class="fa fa-sign-out"
+            aria-hidden="true"></span></a></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container h-120 ">
+    <div class="formup">
+    <div class="row d-flex justify-content-center align-items-center ">
+     
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <h2 class="text-uppercase text-center mb-5">Update User</h2>
+
+  <form action="{{ url_for('update')}}" method="post" enctype="multipart/form-data" onsubmit="return !!( chkfirst() & lastname() & mobile() & age() & chkadd() & chkcity() & chkzip() & fileupload1(), imgup());">
+    
+    <div class="form-outline mb-4">
+      <input class="form-control" type="hidden" name="user_id" placeholder="id" value={{account[1]}}>
+    </div>
+    <div class="form-outline mb-4">
+      <input class="form-control" type="hidden" name="id" placeholder="id" value={{account[0]}}>
+    </div>
+    <div class="row">
+      <div class="coll-lg-6 col-md-6">
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-user-circle-o" aria-hidden="true"></i> First Name:</label>
+          <input class="form-control" type="text" name="first_name" id="chkfirstnm"  placeholder="First Name" value={{account[2] or '' }}  >
+          <span class="errorr" id="chfirstnm"></span>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-user-circle-o" aria-hidden="true"></i> Last Name:</label>
+          <input class="form-control" type="text" name="last_name" id="lastnm" placeholder="Last Name" value={{account[3]  or '' }}  >
+          <span class="errorr" id="lasnm"></span>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</label>
+          <input class="form-control" type="email" name="email" required readonly placeholder="Email Id" value={{account[15]  or '' }} >
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-envelope-o" aria-hidden="true"></i> UserName</label>
+          <input class="form-control" type="text" name="email" required readonly value={{account[16]  or '' }} >
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-calendar" aria-hidden="true"></i> Date of Birth:</label>
+          <input class="form-control" type="date" name="dob" id="dateob" placeholder="Date of Birth" value={{account[4]   or '' }} >
+          <span class="errorr" id="dateof"></span>
+        </div>
+        <div class="form-outline mb-4">
+          <label>Gender:</label>
+
+          <input type="radio" name="gender" required value="male" id="ma" > Male
+
+          <input type="radio" name="gender" value="female" id="fa" > Female
+          <span id="sel"  hidden >{{account[6] or '' }}</span>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-certificate" aria-hidden="true"></i> Birth Certificate</label>
+          <input type="file" id="fileupload" class="form-control" autocomplete="off" name="pdf">
+          <span class="errorr" id="files"></span>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+      
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-mobile" aria-hidden="true"></i> Mobile No.</label>
+          <input class="form-control" type="tel"  id="mobileno" name="mob" placeholder="Mobile No."  
+          value={{account[5]  or '' }} >
+          <span class="errorr" id="mno"></span>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-address-card" aria-hidden="true"></i> Addresss:</label>
+          <input class="form-control" type="text" name="address" maxlength="100" id="add" placeholder="Addresss" value={{account[7]  or '' }} >
+          <span class="errorr" id="addrs"></span>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class='fas fa-city'></i> City:</label>
+          <input class="form-control" type="text" name="city" id="cityy" placeholder="City" value={{account[8]  or '' }} >
+          <span class="errorr" id="cityr"></span>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-map-pin"></i> Zipcode:</label>
+          <input class="form-control" type="text" name="zipcode" id="zip" placeholder="Zipcode" maxlength="6" minlength="6" value={{account[10]  or ''  }} >
+          <span class="errorr" id="zipc"></span>
+
+        </div>
+        <div class="form-outline mb-4">
+          <label>State:</label>
+          <select id="country-state" name="state" class="form-control"  value={{account[9]  or '' }} > 
+            
+            <option value="{{account[9]  or '' }}" selected>{% if account[9] != None %}
+              {{account[9] or '' }}</a>
+          {% else %}
+              -- Select State --
+          {% endif %}</option>
+            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+            <option value="Daman and Diu">Daman and Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Ladakh">Ladakh</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradeshvv">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+        </select>
+        </div>
+        <div class="form-outline mb-4">
+          <label><i class="fa fa-picture-o" aria-hidden="true"></i> Profile Photo</label>
+          <input type="file" id="profile" 
+              class="form-control" autocomplete="off" name="file" accept=".jpg, .png, .jpeg"  >
+              <span id="imagepro" class="errorr"></span>
+          </div>
+          </div>
+          </div>
+          
+      
+    
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-warning btn-login">Update</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+
+{% block body %} 
+<div class="back">
+
+<nav class="navbar navbar-light bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <h2 class="word"><i class="fa fa-user-circle m-2 text-warning "></i>Welcome, Admin</h2>
+    </a>
+   
+    <div class="d-flex">
+      <a href="{{url_for('add_user_form')}}" class="font-icon"><i class="fa fa-user-plus" style="font-size:48px;"></i></a>
+      <a href="{{url_for('home')}}" class="font-icon"><span class="fa fa-home" aria-hidden="true"></span></a>
+    
+    <a href="{{url_for('logout_admin')}}" class="font-icon"><span class="fa fa-sign-out" aria-hidden="true"></span></a></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container h-100 ">
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-danger formup ">
+      <div class="row">
+        <div class="col-11">
+    {% for message in messages %}
+    <i class="fa fa-check" aria-hidden="true"> {{ message }}</i>
+  </div>
+  <div class="col-1">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  </div>
+    {% endfor %}
+   </div>
+  {% endif %}
+
+{% endwith %}
+
+<center>
+  <div class="back-margin">
+  <div style="overflow-x:auto;">
+<table id ="tab" class="table td-table table-striped table-bordered " >
+  <thead>
+    
+    <tr class="table-dark ">
+      <th>Username</th>
+      <th>Full Name</th>
+      <th >Email Id</th>
+      <th>DOB</th>
+      <th>Mobile Number</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th >Date of updation</th>
+      <th class="cell-tab">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in account %}
+    <tr class="table-secondary">
+      <td data-label="Username">{{ row[16] or '' }}</td>
+      <td data-label="Full Name">{{ row[2] or '' }} {{ row[3] or '' }}</td>
+      <td data-label="Email Id">{{ row[15] or '' }}</td>
+      <td data-label="DOB">{{ row[4] or '' }}</td>
+      <td data-label="Mobile Number">{{ row[5] or '' }}</td>
+      <td data-label="Gender">{{ row[6] or '' }}</td>
+      <td data-label="Address">{{ row[7] or '' }} {{ row[8] or '' }} 
+        {{ row[9] or '' }} {{ row[10] or '' }}</td>
+      <td data-label="Date of updation">{{ row[11] or '' }}</td>
+    <td data-label="Action">
+      <a href="{{url_for('fetch_update_user', user_id= row[1] )}}"  class="btn btn-secondary btn-sm" ><i class="fa fa-edit" ></i></button></a>
+      <a href="{{url_for('delete', user_id= row[1] )}}" class="btn btn-danger btn-delete btn-sm" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+      <a href="{{url_for('resetpw', user_id= row[1])}}" class="btn btn-secondary btn-sm"><i class="fa fa-key "></i></a>
+    </td>
+</tr>
+{% endfor %}
+  </tbody>
+</table>
+
+
+</div>
+
+</center>
+
+</div>
+</div>
+
+
+
+
+{% endblock %}

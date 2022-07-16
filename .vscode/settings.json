@@ -1,0 +1,6 @@
+{
+    "git.enabled": false,
+    "git.enableCommitSigning": true,
+    "git.enableSmartCommit": true,
+    "editor.linkedEditing": false
+}
