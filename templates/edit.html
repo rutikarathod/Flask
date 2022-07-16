@@ -31,8 +31,8 @@
             <form action="{{ url_for('edit')}}" method="post"
               onsubmit="return !!( chkfirst() & lastname() & mobile() & age() & chkadd() & chkcity() & chkzip());">
               <center>{% if account[12] != None %}
-              <img src="{{ url_for('static', filename='uploads/' + account[12] )}} " style="height:150px; width: 150px;"
-              class="img-lg rounded-circle mb-3" alt="profile image">
+                <a href="{{ url_for('static', filename='uploads/' + account[12] )}}"> <img src="{{ url_for('static', filename='uploads/' + account[12] )}} " style="height:150px; width: 150px;"
+              class="img-lg rounded-circle mb-3" alt="profile image"></a>
              
               {% else %}
               <img src="/static/images/images.png"
