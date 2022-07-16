@@ -222,14 +222,22 @@ function imgup(){
         document.getElementById("imagepro").innerHTML = "No Choosen file !"
         return false;
     }
-    
+    if (!allowedExtensions.exec(filePath))
+    {
+        document.getElementById("imagepro").innerHTML = "**Invalid format";
+        fileInput.value = '';
+        return false;
+    }
+    if (proimg.files[0].size > 1048576)
+    {
+         document.getElementById("imagepro").innerHTML = "**Images size should be less than 1 MB";
+    }
 
     else{
         document.getElementById("imagepro").innerHTML = "";
         return true;
     }
 }
-
 
 var male = document.getElementById("ma");
 var female = document.getElementById("fa");
