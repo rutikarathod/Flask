@@ -114,7 +114,7 @@
                     <label>State:</label>
                     <select id="country-state " name="state" class="form-control form-control-lg" value={{account[9]
                       or '' }} >
-                      <option value="" selected>{% if account[9] != None %}
+                      <option value="{{account[9]  or '' }}" selected>{% if account[9] != None %}
                         {{account[9] or '' }}
                     {% else %}
                        -- Select State --
