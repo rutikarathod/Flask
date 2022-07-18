@@ -31,7 +31,7 @@
           <div class="card-body p-5">
             <h2 class="text-uppercase text-center mb-5">Update User</h2>
 
-  <form action="{{ url_for('update')}}" method="post" enctype="multipart/form-data" onsubmit="return !!( chkfirst() & lastname() & mobile() & age() & chkadd() & chkcity() & chkzip() & fileupload1(), imgup());">
+  <form action="{{ url_for('update')}}" method="post" enctype="multipart/form-data" onsubmit="return !!( chkfirst() & lastname() & mobile() & age() & chkadd() & chkcity() & chkzip() & chkpdf() & profile());">
     
     <div class="form-outline mb-4">
       <input class="form-control" type="hidden" name="user_id" placeholder="id" value={{account[1]}}>
@@ -74,8 +74,8 @@
         </div>
         <div class="form-outline mb-4">
           <label><i class="fa fa-certificate" aria-hidden="true"></i> Birth Certificate</label>
-          <input type="file" id="fileupload" class="form-control" autocomplete="off" name="pdf">
-          <span class="errorr" id="files"></span>
+          <input type="file" id="pdffile" class="form-control" autocomplete="off" name="pdf">
+          <span class="errorr" id="chpdfe"></span>
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
@@ -152,9 +152,9 @@
         </div>
         <div class="form-outline mb-4">
           <label><i class="fa fa-picture-o" aria-hidden="true"></i> Profile Photo</label>
-          <input type="file" id="profile" 
+          <input type="file" id="file" 
               class="form-control" autocomplete="off" name="file"   >
-              <span id="imagepro" class="errorr"></span>
+              <span id="imga" class="errorr"></span>
           </div>
           </div>
           </div>
