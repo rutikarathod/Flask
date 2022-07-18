@@ -213,30 +213,62 @@ function age() {
     }
 }
 
-function imgup(){
-    var proimg = document.getElementById("profile").value;
-    var filePath = proimg.value;
+
+
+function profile()
+{
+    var fileInput =  document.getElementById('file');
+    var filePath = fileInput.value;
     var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-    if(proimg == "")
+    if(filePath == "")
     {
-        document.getElementById("imagepro").innerHTML = "No Choosen file !"
+        document.getElementById("imga").innerHTML = "**Please choose a Image";
         return false;
     }
     if (!allowedExtensions.exec(filePath))
     {
-        document.getElementById("imagepro").innerHTML = "**Invalid format";
+        document.getElementById("imga").innerHTML = "**Invalid format";
         fileInput.value = '';
         return false;
     }
-    if (proimg.files[0].size > 1048576)
+     if (fileInput.files[0].size > 1048576)
     {
-         document.getElementById("imagepro").innerHTML = "**Images size should be less than 1 MB";
+         document.getElementById("imga").innerHTML = "**Images size should be less than 1 MB";
     }
-
-    else{
-        document.getElementById("imagepro").innerHTML = "";
+    else
+    {
+        document.getElementById("imga").innerHTML = "";
         return true;
     }
+
+}
+function chkpdf()
+{
+    var fileInput =  document.getElementById('pdffile');
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.pdf)$/i;
+    if(filePath == "")
+    {
+        document.getElementById("chpdfe").innerHTML = "**Please choose a birth certificate";
+        return false;
+    }
+    if (!allowedExtensions.exec(filePath))
+    {
+        document.getElementById("chpdfe").innerHTML = "**Invalid format";
+        fileInput.value = '';
+        return false;
+    }
+    if (fileInput.files[0].size >= 3145728)
+    {
+        document.getElementById("chpdfe").innerHTML = "**File size should be less than or Equal to 3 MB";
+        return false;
+    }
+    else
+    {
+        document.getElementById("chpdfe").innerHTML = "";
+        return true;
+    }
+
 }
 
 var male = document.getElementById("ma");
@@ -253,24 +285,6 @@ else if(checked == "female")
 else
 {}
 
-
-function fileupload1() {
-    var upload = document.getElementById("fileupload").value;
-    // check empty fileupload field
-    if (upload == "") {
-        document.getElementById("files").innerHTML = "Required to attach file of birth cirtificate";
-        return false;
-    }
-    if (!/\.pdf$/i.test(upload)) {
-        document.getElementById("files").innerHTML = "Attach only pdf format file";
-        return false;
-    }
-    else 
-    {
-        document.getElementById("files").innerHTML = "";
-        return true;
-    }
-}
 
 
 
