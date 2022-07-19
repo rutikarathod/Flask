@@ -5,141 +5,153 @@
 
 {% block body %}
 <div class="reg-img">
-     
-     <nav class="navbar navbar-light bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <h2 class="text-uppercase">
-                <h2 class="word"><i class="fa fa-user-circle m-2 text-warning"></i> Welcome,{{account[16]  or '' }} </h2>
-          </a>
-         
-          <div class="d-flex">
-            <a href="{{url_for('home')}}" class="font-icon"><span class="fa fa-home"
-                aria-hidden="true"></span></a>
 
-        <a href="{{url_for('logout')}}" class="font-icon"><span class="fa fa-sign-out"
-                aria-hidden="true"></span></a></button>
-          </div>
+    <nav class="navbar navbar-light bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h2 class="text-uppercase">
+                    <h2 class="word"><i class="fa fa-user-circle m-2 text-warning"></i> Welcome,{{account[16]  or '' }}
+                    </h2>
+            </a>
+
+            <div class="d-flex">
+                <a href="#" class="font-icon"><span class="fa fa-home" aria-hidden="true"></span></a>
+
+                <a href="{{url_for('logout')}}" onclick="return confirm('Are you sure you want to logout?');"
+                    class="font-icon"><span class="fa fa-sign-out" aria-hidden="true"></span></a></button>
+            </div>
         </div>
-      </nav>
-      <p>
-        
+    </nav>
+    <p>
+
     </p>
     <center>
-    <div class="page-content  page-container h-100 mt-5 mb-10 center" id="page-content">
-      
-        <div class="padding">
-            <div class="row container d-flex justify-content-center">
+        <div class="page-content  page-container h-100 mt-5 mb-10 center" id="page-content">
 
-                <div class="col-md-5">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div>
-                                {% if account[12] != None %}
-                                <img src="{{ url_for('static', filename='uploads/' + account[12] )}}"
-                                class="img-lg rounded-circle mb-3" alt="profile image" style="height:200px; width: 200px;">
-                               
-                                {% else %}
-                                <img src="/static/images/images.png"
-                                class="img-lg rounded-circle mb-3" alt="profile image">
-                                {% endif %}
-                               
-                                <h4> {{account[2] or '' }} {{account[3] or '' }}</h4>
-                                <h6 class="text-muted mb-0">Trainee Software Developer</h6>
-                            </div>
-                            
+            <div class="padding">
+                <div class="row container d-flex justify-content-center">
 
-                            <a href="{{url_for('fetch_edit_user')}}">Edit Profile</a>
-                            <div class="border-top pt-3">
-                                <div class="col-md">
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Full Name</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[2] or '' }} {{account[3] or '' }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Email</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[15] or '' }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Date of birth</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[4] or '' }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Mobile No.</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[5] or '' }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Gender</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[6] or '' }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Address</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[7] or '' }} {{account[8] or '' }} {{account[9] or ''
-                                                    }} {{account[10] or '' }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Birth Cetificate</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                            {% if account[13] != None %}
-                                <a href="{{ url_for('static', filename='PDF/' + account[13] or '' )}}" >
-                                    {{account[13] or '' }}</a>
-                            {% else %}
-                                    No file Choosen
-                            {% endif %}
-                                                </div>
-                                            </div>
-                                            <hr>
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <div>
+                                    {% if account[12] != None %}
+                                    <a href="{{ url_for('static', filename='uploads/' + account[12]) }}"><img
+                                            src="{{ url_for('static', filename='uploads/' + account[12] )}}"
+                                            class="img-lg rounded-circle mb-3" alt="profile image"
+                                            style="height:200px; width: 200px;"></a>
 
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Updation date</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{account[11] or '' }}
-                                                </div>
-                                            </div>
+                                    {% else %}
+                                    <img src="/static/images/images.png" class="img-lg rounded-circle mb-3"
+                                        alt="profile image">
+                                    {% endif %}
 
-
-                                        </center>                                 
-                                    </div>
-                                    </div>
+                                    <h4> {{account[2] or '' }} {{account[3] or '' }}</h4>
+                                    <h6 class="text-muted mb-0">Trainee Software Developer</h6>
                                 </div>
-                                </form>
-                            </div>
 
 
-  {% endblock %}
+                                <a href="{{url_for('fetch_edit_user')}}">Edit Profile</a>
+                                <div class="border-top pt-3">
+                                    <div class="col-md">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Full Name</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[2] or '' }} {{account[3] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Email</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[15] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Username</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[16] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Date of birth</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[4] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Mobile No.</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[5] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Gender</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[6] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Address</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[7] or '' }} {{account[8] or '' }} {{account[9] or ''
+                                                    }} {{account[10] or '' }}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Birth Cetificate</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {% if account[13] != None %}
+                                                        <a
+                                                            href="{{ url_for('static', filename='PDF/' + account[13] or '' )}}">
+                                                            {{account[13] or '' }}</a>
+                                                        {% else %}
+                                                        No file Choosen
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <hr>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Updation date</h6>
+                                                    </div>
+                                                    <div class="col-sm-8 text-secondary">
+                                                        {{account[11] or '' }}
+                                                    </div>
+                                                </div>
+
+
+    </center>
+</div>
+</div>
+</div>
+</form>
+</div>
+
+
+{% endblock %}

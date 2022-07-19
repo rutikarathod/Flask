@@ -3,7 +3,6 @@ import psycopg2
 import psycopg2.extras
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-import urllib.request
 import os
 from werkzeug.utils import secure_filename
 
@@ -15,7 +14,7 @@ app.secret_key = "log_user"
 DB_HOST = "localhost"
 DB_NAME = "testdb"
 DB_USER = "postgres"
-DB_PASS = "admin123"
+DB_PASS = "test123"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 UPLOAD_FOLDER = 'static/uploads/'
@@ -113,7 +112,8 @@ def edit():
             cur.execute(f"""UPDATE user_profile set first_name='{first_name}', last_name='{last_name}', dob='{dob}',
                                     mob='{mob}', gender='{gender}', address='{address}', city='{city}',
                                     state='{state}', zipcode='{zipcode}', profile_dt='{date_modified}' WHERE user_id='{user_id}'""")
-
+            cur.execute(
+                f"UPDATE user_login set username='{username}', email='{email}' WHERE id='{user_id}'")
             conn.commit()
             cur.close()
         flash("Update succsessfully !!")
@@ -146,10 +146,16 @@ def user():
         password = request.form.get('password')
         conf_pwd = request.form.get("conf_pwd")
         cursor.execute(f"select * from user_login where email='{email}'")
-        user_exist = cursor.fetchone()
+        email_exist = cursor.fetchone()
+        cursor.execute(f"select * from user_login where username='{username}'")        
+        user_exist = cursor.fetchone()  
         cursor.close()
-        if user_exist:
-            message = "Account with this email aready exist, please try another email..!!"
+
+        if email_exist:
+            message = "Account with this email already exist, please try another email..!!"
+            return render_template("user.html", error=message)
+        elif user_exist:
+            message = "Account with this username already exist, please try another username..!!"
             return render_template("user.html", error=message)
         elif request.method == 'POST':
             if password == conf_pwd:
@@ -267,7 +273,7 @@ def update():
                 cur.execute(f"""update user_profile set first_name='{first_name}', last_name='{last_name}', dob='{dob}',
                     mob='{mob}', gender='{gender}', address='{address}', city='{city}',
                     state='{state}', zipcode='{zipcode}', profile_dt='{date_modified}', file='{filename}', pdf='{pdfname}'  WHERE user_id='{user_id}'""")
-                
+                cur.execute(f"update user_login set username='{username}', email='{email}' WHERE id='{user_id}'")
                 conn.commit()
                 cur.close()
                 
