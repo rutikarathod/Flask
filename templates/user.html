@@ -1,76 +1,79 @@
 {% extends 'base.html' %}
 {% block title %}Admin Dashboard{% endblock %}
-{% block body %} 
+{% block body %}
 <div class="reg-img">
-  
+
   <nav class="navbar navbar-light bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <h2 class="word"><i class="fa fa-user-circle m-2 text-warning"></i>Welcome, Admin</h2></a>
+        <h2 class="word"><i class="fa fa-user-circle m-2 text-warning"></i>Welcome, Admin</h2>
       </a>
-     
+      </a>
+
       <div class="d-flex">
         <a href="{{url_for('add_user')}}" class="font-icon"><span class="fa fa-home" aria-hidden="true"></span></a>
-        
-        <a href="{{url_for('logout_admin')}}" class="font-icon"><span class="fa fa-sign-out" aria-hidden="true"></span></a></button>
-           
+
+        <a href="{{url_for('logout_admin')}}" onclick="return confirm('Are you sure you want to logout?');"
+          class="font-icon"><span class="fa fa-sign-out" aria-hidden="true"></span></a></button>
+
       </div>
     </div>
   </nav>
-<div class="container h-100 ">
-  <div class="formup"></div>
-  <div class="row d-flex justify-content-center align-items-center ">
-    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-      <div class="card" style="border-radius: 15px;">
-        <div class="card-body p-5">
-          <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+  <div class="container h-100 ">
+    <div class="formup"></div>
+    <div class="row d-flex justify-content-center align-items-center ">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-  <form action="{{ url_for('user')}}" method="post" onsubmit="return !!(chkuname() & chkemail() & check());" >
-    {% if success %}
-    <p class="error text-success">{{ success }}
-    {% endif %}
-    <hr>
-    <div>
-    <input type="hidden" name="id" >
+            <form action="{{ url_for('user')}}" method="post" onsubmit="return !!(chkuname() & chkemail() & check());">
+              {% if success %}
+              <p class="error text-success">{{ success }}
+                {% endif %}
+                <hr>
+                <div>
+                  <input type="hidden" name="id">
 
+                </div>
+                <div>
+                  <input type="hidden" name="user_id">
+                </div>
+                <div class="form-outline mb-4">
+                  <label><span class="fa fa-user" style="font-size:24px"></span> UserName</label>
+                  <input type="text" name="username" class="form-control form-control-lg" id="usernm">
+                  <span class="errorr" id="unm"></span>
+                </div>
+                <div class="form-outline mb-4">
+                  <label><span class="fa fa-envelope-o" style="font-size:24px"></span> Email</label>
+                  <input type="text" name="email" class="form-control form-control-lg" id="email">
+                  <span class="errorr" id="usrem"></span>
+                </div>
+                <div class="form-outline mb-4">
+                  <label><span class="fa fa-lock" style="font-size:24px"></span> Password</label>
+                  <input type="password" name="password" class="form-control form-control-lg" id="password">
+                  <span class="errorr" id="message"></span>
+                </div>
+                <div class="form-outline mb-4">
+                  <label><span class="fa fa-check" style="font-size:24px"></span> Confirm Password</span></label>
+                  <input type="password" name="conf_pwd" class="form-control form-control-lg">
+                </div>
+                {% if denied %}
+                <p class="errorr"><strong>Error:</strong> {{ denied }}
+                  {% endif %}
+                  <div class="d-flex justify-content-center">
+                    <button class="btn btn-block btn-lg btn btn-warning btn-login text-body"
+                      href="{{ url_for('add_user_form')}}">Add</button>
+                  </div>
+            </form>
+            {% if error %}
+            <p class="errorr"><strong>Error:</strong> {{ error }}
+              {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <input type="hidden" name="user_id" >
-    </div>
-    <div class="form-outline mb-4">
-      <label><span class="fa fa-user" style="font-size:24px"></span> UserName</label>
-      <input  type="text" name="username"  class="form-control form-control-lg" id="usernm" >
-      <span class="errorr" id="unm"></span>
-    </div>
-    <div class="form-outline mb-4">
-      <label><span class="fa fa-envelope-o" style="font-size:24px"></span> Email</label>
-      <input  type="text"  name="email"   class="form-control form-control-lg" id="email">
-      <span class="errorr" id="usrem"></span>
-    </div>
-    <div class="form-outline mb-4">
-      <label><span class="fa fa-lock" style="font-size:24px"></span> Password</label>
-      <input type="password" name="password"  class="form-control form-control-lg" id="password"  >
-      <span class="errorr" id="message"></span>
-    </div>
-    <div class="form-outline mb-4">
-      <label><span class="fa fa-check" style="font-size:24px"></span> Confirm Password</span></label>
-      <input  type="password" name="conf_pwd"  class="form-control form-control-lg"  >
-    </div>
-    {% if denied %}
-    <p class="errorr"><strong>Error:</strong> {{ denied }}
-    {% endif %}
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-block btn-lg btn btn-warning btn-login text-body" href="{{ url_for('add_user_form')}}">Add</button>
-    </div>
-  </form>
-  {% if error %}
-  <p class="errorr"><strong>Error:</strong> {{ error }}
-  {% endif %}
-</div>
-</div>
-</div>
   </div>
-</div>
 </div>
 
 {% endblock %}
