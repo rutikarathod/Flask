@@ -73,7 +73,7 @@
       <td data-label="Date of updation">{{ row[11] or '' }}</td>
     <td data-label="Action">
       <a href="{{url_for('fetch_update_user', user_id= row[1] )}}"  class="btn btn-secondary btn-sm" ><i class="fa fa-edit" ></i></button></a>
-      <a href="{{url_for('delete', user_id= row[1] )}}" class="btn btn-danger btn-delete btn-sm" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+      <a href="{{url_for('delete', user_id= row[1] )}}" class="btn btn-danger btn-delete btn-sm" onclick="return confirm('Are you sure you want to remove this user?');" ><i class="fa fa-trash" aria-hidden="true"></i></a>
       <a href="{{url_for('resetpw', user_id= row[1])}}" class="btn btn-secondary btn-sm"><i class="fa fa-key "></i></a>
     </td>
 </tr>
